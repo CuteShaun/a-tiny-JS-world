@@ -7,8 +7,70 @@
 
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
+const allProps = [
+  "type",
+  "legs",
+  "hands",
+  "gender",
+  "name",
+  "saying",
+  "friendList"
+];
 
+class MainForm {
+  constructor(type, legs, hands, gender, name, saying, friendList) {
+    this.type = type;
+    this.legs = legs;
+    this.hands = hands;
+    this.gender = gender;
+    this.name = name;
+    this.saying = saying;
+    this.friendList = friendList;
+  }
 
+  say() {
+    print(this.saying);
+  }
+
+  dossier() {
+    print(allProps.map(item => `${this[item]}`).join("; "));
+  }
+
+  friends() {
+    print(`<em>${this.friendList}</em>`);
+  }
+}
+
+class Cat extends MainForm {
+  constructor(type, legs, hands, gender, name, friendList) {
+    super(type, legs, hands, gender, name, friendList);
+    this.saying = "meow";
+  }
+}
+
+const man = new MainForm("human", 2, 2, "male", "Andrew", "Hello, Eva!", [
+  "Eva",
+  " Masya"
+]);
+const woman = new MainForm("human", 2, 2, "female", "Eva", "Hello, Andrew!", [
+  "Andrew",
+  " Barkl"
+]);
+const dog = new MainForm("animal", 4, 0, "male", "Barkl", "bark", [
+  "Eva",
+  " Andrew"
+]);
+const cat = new Cat("animal", 4, 0, "female", "Masya", "meow", ["Andrew"]);
+const catWoman = new Cat("human", 4, "female", "Eva", ["Andrew", "Barkl"]);
+
+man.say();
+woman.say();
+dog.say();
+catWoman.say();
+cat.say();
+
+man.dossier();
+woman.friends();
 // ======== OUTPUT ========
 /* Use print(message) for output.
    Default tag for message is <pre>. Use print(message,'div') to change containing element tag.
@@ -27,5 +89,3 @@
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny');
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny', 'div');
    */
-
-
