@@ -10,15 +10,14 @@
 
 //Return string of all property obj values
 function toString(obj) {
-  const valuesArr = Object.values(obj);
-
-  return valuesArr.map(item => {
-      if (Array.isArray(item)) {
-        return item.join(", ");
+  return allProps
+    .map(item => {
+      if (Array.isArray(obj[item])) {
+        return obj[item].join(", ");
       }
-      return `${item}`;
+      return `${obj[item]}`;
     })
-    .join("; ")
+    .join("; ");
 }
 
 const allProps = [
